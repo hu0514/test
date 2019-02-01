@@ -52,10 +52,10 @@ android {
             }
         }
 
-        debug {
-            signingConfig signingConfigs.release
-        }
-    }
+//        debug {
+//            signingConfig signingConfigs.release
+//        }
+//    }
 
 //    compileOptions {
 //        targetCompatibility 1.8
