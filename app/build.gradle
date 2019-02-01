@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.lingdong20"
         minSdkVersion 14
-        targetSdkVersion 24
+        targetSdkVersion 22
         versionCode 5
         versionName '2.1.0901.2146(beta)'
     }
@@ -23,5 +23,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile 'com.android.support:design:24.0.0'
     compile project(':library')
 }
