@@ -1,0 +1,89 @@
+apply plugin: 'com.android.application'
+
+static def releaseTime() {
+    return new Date().format("yyyy-MM-dd HH-mm", TimeZone.getTimeZone("GMT+8"))
+}
+
+Properties props = new Properties()
+props.load(project.rootProject.file('local.properties').newDataInputStream())
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.xujiaji.todo"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 18
+        versionName "1.1.2.1"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField "String",           "BASE_URL", "$baseUrl"
+        buildConfigField "String",       "LICENSES_URL", "$licensesUrl"
+        buildConfigField "String", "UPDATE_VERSION_URL", "$versionUrl"
+        buildConfigField "String",        "DOWNLOAD_RQ", "$downloadQr"
+        buildConfigField "String",          "DAILY_URL", "$dailyUrl"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(props['KEYSTORE_PATH'])
+            storePassword props['KEYSTORE_PASSWORD']
+            keyAlias props['KEY_ALIAS']
+            keyPassword props['KEY_PASSWORD']
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = "wantodo_v${defaultConfig.versionName}_${releaseTime()}.apk"
+                }
+            }
+        }
+
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+
+//    compileOptions {
+//        targetCompatibility 1.8
+//        sourceCompatibility 1.8
+//    }
+}
+
+apply plugin: 'replugin-plugin-gradle'
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "com.android.support:appcompat-v7:$support"
+    implementation "com.android.support:design:$support"
+    implementation "com.android.support.constraint:constraint-layout:$constraint"
+    implementation "com.github.xujiaji:xmvp:$xmvp"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.github.GrenderG:Toasty:$toasty"
+    implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:$adapterHelper"
+    implementation "com.github.xujiaji:happy-bubble:$happyBubble"
+    implementation "com.github.xujiaji:ripple-checkbox:$rippleCheckbox"
+    implementation "com.qianwen:update-app:$updateApp"
+    implementation 'com.qianwen:okhttp-utils:3.8.0'
+    // 友盟统计
+    implementation "com.umeng.sdk:common:$umengCommon"
+    implementation "com.umeng.sdk:analytics:$umengAnalytics"
+    implementation 'com.qihoo360.replugin:replugin-plugin-lib:2.3.0'
+    implementation "com.github.bumptech.glide:glide:$glide"
+
+    implementation project(':DateTimePickerLibrary')
+}

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rgGroup"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RadioButton
+        android:id="@+id/rbUseOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/use_one"/>
+
+    <RadioButton
+        android:id="@+id/rbWork"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/work"/>
+
+    <RadioButton
+        android:id="@+id/rbLearn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/learn"/>
+
+    <RadioButton
+        android:id="@+id/rbLife"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/life"/>
+
+
+    <LinearLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:background="@drawable/dotted_line">
+
+        <Button
+            android:id="@+id/btnAbout"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            style="@style/Base.Widget.AppCompat.ActionButton.CloseMode"
+            android:gravity="center"
+            android:text="@string/about"
+            android:textColor="@color/colorAccent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/dotted_line">
+            <Button
+                android:id="@+id/btnOneSentence"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                style="@style/Base.Widget.AppCompat.ActionButton.CloseMode"
+                android:gravity="center"
+                android:text="@string/one_sentence"
+                android:textColor="@color/colorAccent"/>
+
+            <CheckBox
+                android:id="@+id/cbOneSentence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/open"
+                android:checked="true"
+                android:textColor="@color/colorAccent"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RadioGroup>
