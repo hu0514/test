@@ -28,14 +28,14 @@ android {
         abortOnError false
     }
 
-    signingConfigs {
-        release {
-            storeFile file(props['KEYSTORE_PATH'])
-            storePassword props['KEYSTORE_PASSWORD']
-            keyAlias props['KEY_ALIAS']
-            keyPassword props['KEY_PASSWORD']
-        }
-    }
+//    signingConfigs {
+//        release {
+//            storeFile file(props['KEYSTORE_PATH'])
+//            storePassword props['KEYSTORE_PASSWORD']
+//           keyAlias props['KEY_ALIAS']
+//            keyPassword props['KEY_PASSWORD']
+//        }
+//    }
 
     buildTypes {
         release {
